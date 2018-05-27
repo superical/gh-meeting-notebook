@@ -76,5 +76,5 @@ These special labels can be used for an issue.
 | Label | Description |
 | --- | ---- |
 | Assignee: # | To set an assignee name to a task. Eg: Assignee: Jane. Jane will be one of the assignees of the task. |
-| Status: Include | Include a closed task in the report even if it is older than its `reportClosedIssueNumDays`  |
-| Status: Exclude | Exclude a task from the report |
+| Report: Include | Include a closed task in the report even if it is older than its `reportClosedIssueNumDays`  |
+| Report: Exclude | Exclude a task from the report |
