@@ -9,6 +9,7 @@ lib
 lib-esm
 typings
 docs
+dist
 
 src/bookmarklet/index.html
 
