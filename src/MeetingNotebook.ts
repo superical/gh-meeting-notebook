@@ -9,24 +9,24 @@ export default class MeetingNotebook {
   private readonly octokit: Github
   private repoOwner: string
   private repoName: string
+  private reportClosedIssuesNumDays: number
 
-  constructor(githubInfo: {
-    token: string
-    repo: {
-      name: string
-      owner: string
-    }
-  }) {
+  constructor(setupInfo: IConfigInfo) {
     console.log('Starting MeetingNotebook...')
-    this.octokit = octokit(githubInfo.token)
-    this.repoOwner = githubInfo.repo.owner
-    this.repoName = githubInfo.repo.name
+    this.octokit = octokit(setupInfo.token)
+    this.repoOwner = setupInfo.repo.owner
+    this.repoName = setupInfo.repo.name
+    if (setupInfo.report === undefined || setupInfo.report.closedIssuesNumDays === undefined) {
+      this.reportClosedIssuesNumDays = 30
+    } else {
+      this.reportClosedIssuesNumDays = setupInfo.report.closedIssuesNumDays
+    }
   }
 
   public async run(templateHtml = ''): Promise<Blob> {
     let issuesList: Issue[] = []
     const issuesBook = new IssuesBook(this.octokit, this.repoOwner, this.repoName)
-    const closedIssues = await issuesBook.getClosedIssues({}, 30)
+    const closedIssues = await issuesBook.getClosedIssues({}, this.reportClosedIssuesNumDays)
     const openIssues = await issuesBook.getOpenIssues()
 
     issuesList.push(...openIssues.filter(issue => !issue.mustExcludeFromReport()))
@@ -56,5 +56,18 @@ export default class MeetingNotebook {
 
   public async saveAs(reportBlob: Blob, filename: string): Promise<void> {
     FileSaver.saveAs(reportBlob, filename)
+  }
+}
+
+export interface IConfigInfo {
+  token: string
+  repo: {
+    owner: string
+    name: string
+  }
+  report: {
+    filenamePrefix: string
+    closedIssuesNumDays?: number
+    templateHtml: string
   }
 }
