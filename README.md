@@ -41,11 +41,16 @@ Just have to reopen an issue in the repository, and then click on that bookmarkl
 I'm hoping this can save myself a lot of time and headaches!
 
 ## Usage
+Either download from the release or build from the source.
 ```javascript
 npm install
 ```
+or
+```javascript
+yarn install
+```
 
-Either build the files or download from the release:
+Then build the files:
 ```javascript
 npm run build
 ```
