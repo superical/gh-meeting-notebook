@@ -38,14 +38,13 @@ export default async (config: IConfigInfo) => {
       await sleep(200)
       try {
         const now = new Date()
-        const month =
-          now.getMonth().toString().length === 1 ? '0' + now.getMonth().toString() : now.getMonth().toString()
-        const date = now.getDate().toString().length === 1 ? '0' + now.getDate().toString() : now.getDate().toString()
+        const month = ('0' + (now.getMonth() + 1)).slice(-2).toString()
+        const date = ('0' + now.getDate()).slice(-2).toString()
         const filename = config.report.filenamePrefix + now.getUTCFullYear().toString() + month + date
         ;(document.querySelector('#status-msg') as HTMLDivElement).innerText = 'Saving report...'
         await sleep(200)
         if (confirm('Do you want to open an email to send notes?')) {
-          const msgCurrDateTime = format(new Date(), 'dddd, DD MMMM YYYY') + ' at ' + format(new Date(), 'hh:mm:ss A')
+          const msgCurrDateTime = format(new Date(), 'DD MMMM YYYY (dddd)') + ' at ' + format(new Date(), 'hh:mm:ss A')
           window.open(
             'mailto:?subject=Meeting notes on ' +
               date +
@@ -55,7 +54,7 @@ export default async (config: IConfigInfo) => {
               now.getUTCFullYear().toString() +
               '&body=' +
               encodeURIComponent(
-                'Hi,\r\n\r\nThe meeting notes as at ' + msgCurrDateTime + ' is attached in this email.\r\n\r\n'
+                'Hi,\r\n\r\nThe meeting notes as on ' + msgCurrDateTime + ' is attached in this email.\r\n\r\n'
               ),
             '_self'
           )
