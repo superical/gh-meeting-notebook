@@ -6,23 +6,25 @@ This bookmarklet basically generates a meeting tasks report in MS Word document.
 
 
 ## The Problem
-Have you ever had to record and keep track of tasks discussed in meetings and then churn out a meeting report in a MS Word document for your boss at work?
+Have you ever had a time at work when your boss wants you to use Microsoft Word to record and keep track of the tasks discussed in every meeting and then churn out a tasks report in Microsoft Word for his viewing pleasure?
 
-Recently, I found myself having to keep track of meeting tasks and compile them into a Microsoft Word document report on a weekly basis at work. The process isn't difficult, but it's a very tedious, time-consuming and error-prone one. 
+Recently, I found myself having to keep track of meeting tasks and compile them into a Microsoft Word document report on a weekly basis at work. The process isn't difficult, but it's a _very_ tedious, time-consuming and error-prone one. Basically, I've to convert myself into a human Github/Jira issue tracker of sorts once a week at work.
 
 After the initial weeks at refining my motor skills in MS Word, eye-balling through rows after rows of meeting tasks and clicking away updating them one by one, I can't help questioning the irony of using a word processor as a task tracking tool.
 
+I'm guessing it's just that few old-school cubicle dwellers who got so stuck within the Microsoft Office world. Need to send an email? It has to be Outlook. Got to draw a diagram? Powerpoint! Gantt charts? Excel! Reports? Word. :/
+
 ## The Idea!
-There are already many tools out there for such purposes, and I just need to convert the end result to a format in which typical office workers are used to reading. 
-In my case, I'm required to produce the report in a MS Word document. 
+There are already many tools out there for keeping track of tasks. I thought as long as I can send the report as a Microsoft Word file for my boss to read, I would have satisfied his requirement and he probably would have just thought I had done it manually in the MS Word. In other words, I could still secretly use an issue tracker for this purpose but I just have to somehow save my report as a MS Word document in the template he had "designed" for the report. 
 
 Github already has a great issue tracking tool! Best of all, Github is _free_!
 So, instead of tracking issues manually, why not use Github's issue tracker and its kanban board to record meeting tasks in a repository 
 and then, with just a single click, generate a report that's ready to be sent out?
 
+Retrieving issues from the Github repo's issue tracker:
 ![Demo](https://i.imgur.com/f6987td.gif)
 
-The issues in the Github repository are then plugged into the Word document:
+The issues in the Github repository plugged into the Word document based on a template:
 ![Word Document Report](https://i.imgur.com/ccCsD3rl.png)
 
 This simple idea uses a bookmarklet. Currently, it does the following which fulfils what I need at work:
